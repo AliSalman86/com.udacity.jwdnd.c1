@@ -16,7 +16,6 @@ public class ReviewApplication {
 		SpringApplication.run(ReviewApplication.class, args);
 		System.out.println("Hello Spring");
 	}
-
 	@Bean
 	public String basicMessage() {
 		System.out.println("inside basicMessage");
@@ -32,5 +31,12 @@ public class ReviewApplication {
 	public int characterCount(String message) {
 		System.out.println(message.length());
 		return message.length();
+
+	}
+	@Bean
+	public String anotherNestedMessage(String basicMessage, String message) { /** basicMessage here won't invoke the basicMessage bean,
+	 	but the compoundMessage bean due to @Primary */
+		System.out.println(basicMessage + " + " + message);
+		return "The End";
 	}
 }
